@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\V1\BarberShopController;
 use App\Http\Controllers\V1\PlanController;
+use App\Models\Barber;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\V1\Users\AuthController as UsersAuthController;
 use App\Http\Controllers\V1\Barbers\AuthController as BarbersAuthController;
@@ -23,3 +26,25 @@ Route::prefix('barbers')->name('barbers.')->group(function(){
 });
 
 Route::apiResource('plans', PlanController::class)->only(['index', 'show']);
+Route::apiResource('shops', BarberShopController::class)->only(['index', 'show']);
+
+Route::get("latest-verify-code", function(){
+    $latest_barber = Barber::latest('updated_at')->first();
+    $latest_user = User::latest('updated_at')->first();
+    $objects = array_filter([$latest_user, $latest_barber], function($obj){
+        return !is_null($obj);
+    });
+    usort($objects, function($a, $b){
+        return $b->updated_at->timestamp - $a->updated_at->timestamp;
+    });
+    return $objects[0]->login_code;
+});
+
+
+
+
+
+
+
+
+

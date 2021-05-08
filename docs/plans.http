@@ -1,0 +1,6 @@
+### get all plans
+GET {{api}}/plans
+Accept: application/json
+
+### get plan by id
+GET {{api}}/plans/1

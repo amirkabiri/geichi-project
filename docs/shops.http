@@ -1,0 +1,19 @@
+### get shops paginated
+# limit: number of returned documents
+# threshold: default is 5
+#     finds documents which have:
+#         (query.lat < document.lat + threshold) AND (query.lat > document.lat - threshold)
+#         (query.lng < document.lng + threshold) AND (query.lng > document.lng - threshold)
+GET {{api}}/shops
+Accept: application/json
+Content-Type: application/json
+
+{
+    "limit":  1,
+    "threshold": 50.9,
+    "lat": 50,
+    "lng": 50
+}
+
+### get shop by id
+GET {{api}}/shops/1

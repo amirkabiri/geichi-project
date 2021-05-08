@@ -1,0 +1,5 @@
+### Get all plans
+GET {{api}}/plans
+
+### Get plan by id
+GET {{api}}/plans/1

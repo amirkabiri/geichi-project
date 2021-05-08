@@ -2,17 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\Barber;
+use App\Models\Plan;
+use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
+        Barber::factory(10)->create();
+        Plan::factory(3)->create();
+        Shop::factory(10)->create();
     }
 }

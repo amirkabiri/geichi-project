@@ -1,0 +1,13 @@
+POST {{api}}/barbers/auth/request
+Accept: application/json
+Content-Type: application/json
+
+{"phone": "09146878528"}
+
+
+###
+POST {{api}}/barbers/auth/verify
+Accept: application/json
+Content-Type: application/json
+
+{"phone": "09146878528", "code":  "4253"}
