@@ -9,6 +9,10 @@ class Shop extends Model
 {
     use HasFactory;
 
+    public function owner(){
+        return $this->belongsTo(Barber::class, 'owner_id', 'id');
+    }
+
     public function comments(){
         return $this->hasMany(Comment::class);
     }

@@ -11,7 +11,7 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->foreignId('plan_id')->nullable()->constrained('plans');
-            $table->bigInteger('owner')->unsigned();
+            $table->bigInteger('owner_id')->unsigned();
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
             $table->string('prepayment_amount')->default('0');

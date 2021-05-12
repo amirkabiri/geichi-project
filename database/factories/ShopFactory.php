@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Plan;
 use App\Models\Shop;
-use App\Models\User;
+use App\Models\Barber;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,10 +15,10 @@ class ShopFactory extends Factory
     public function definition()
     {
         $plan = Plan::factory()->create();
-        $owner = User::factory()->create();
+        $owner = Barber::factory()->create();
         return [
             'plan_id' => $plan->id,
-            'owner' => $owner->id,
+            'owner_id' => $owner->id,
             'lat' => $this->faker->numberBetween(-90, 90),
             'lng' => $this->faker->numberBetween(-90, 90),
             'expire_at' => Carbon::now()->addDays($this->faker->numberBetween(0, 90)),

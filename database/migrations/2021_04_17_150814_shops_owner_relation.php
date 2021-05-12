@@ -9,7 +9,7 @@ class ShopsOwnerRelation extends Migration
     public function up()
     {
         Schema::table('shops', function (Blueprint $table){
-            $table->foreign('owner')->references('id')->on('users');
+            $table->foreign('owner_id')->references('id')->on('barbers');
         });
     }
 

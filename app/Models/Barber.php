@@ -12,6 +12,14 @@ class Barber extends Model
     protected $fillable = ['phone', 'first_name', 'last_name', 'avatar', 'start_time', 'end_time'];
     protected $hidden = ['api_token', 'login_code'];
 
+    public function isOwnerOfShop(Shop $shop){
+        return $this->id === $shop->owner_id;
+    }
+
+    public function shops(){
+        return $this->hasMany(Shop::class, 'owner_id', 'id');
+    }
+
     public function comments(){
         return $this->morphMany(Comment::class, 'sender');
     }
