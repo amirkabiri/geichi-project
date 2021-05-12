@@ -1,20 +1,23 @@
 <?php
 
+use App\Models\Comment;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    $comment = Comment::find(1);
+    return get_class($comment->sender);
+    return last(explode('\\', $comment->sender_type));
+    return dd(auth('barber')->user());
+    return dd(currentGuard());
+    return auth()->user();
+
+    return \App\Models\Comment::find(1)->sender;
+    return User::find(21)->comments;
+
+
 //    return \Illuminate\Support\Facades\App::version();
     $user = new User();
 

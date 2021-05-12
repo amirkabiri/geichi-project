@@ -1,5 +1,15 @@
-### Get all plans
-GET {{api}}/plans
+POST {{api}}/users/auth/request
+Accept: application/json
+Content-Type: application/json
 
-### Get plan by id
-GET {{api}}/plans/1
+{"phone": "09146878528"}
+
+
+###
+POST {{api}}/users/auth/verify
+Accept: application/json
+Content-Type: application/json
+
+{"phone": "09146878528", "code":  "6634"}
+
+###

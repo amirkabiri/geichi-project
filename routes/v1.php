@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\V1\BarberShopController;
+use App\Http\Controllers\V1\CommentController;
 use App\Http\Controllers\V1\PlanController;
 use App\Models\Barber;
 use App\Models\User;
@@ -27,6 +28,7 @@ Route::prefix('barbers')->name('barbers.')->group(function(){
 
 Route::apiResource('plans', PlanController::class)->only(['index', 'show']);
 Route::apiResource('shops', BarberShopController::class)->only(['index', 'show']);
+Route::apiResource('shops.comments', CommentController::class);
 
 Route::get("latest-verify-code", function(){
     $latest_barber = Barber::latest('updated_at')->first();

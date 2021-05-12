@@ -13,23 +13,16 @@ class PlanPolicy
 
     /**
      * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny($user)
     {
         return false;
     }
 
     /**
      * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Plan  $plan
-     * @return mixed
      */
-    public function view(User $user, Plan $plan)
+    public function view($user, Plan $plan)
     {
         return true;
     }

@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-//        'guard' => 'barber',
-//        'passwords' => 'users',
+        'guard' => 'barber',
+        'passwords' => 'users',
     ],
 
     /*
@@ -48,10 +48,10 @@ return [
             'hash' => false
         ],
 
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins'
-        ],
+//        'admin' => [
+//            'driver' => 'session',
+//            'provider' => 'admins'
+//        ],
     ],
 
     /*

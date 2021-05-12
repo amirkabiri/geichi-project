@@ -12,6 +12,10 @@ class Barber extends Model
     protected $fillable = ['phone', 'first_name', 'last_name', 'avatar', 'start_time', 'end_time'];
     protected $hidden = ['api_token', 'login_code'];
 
+    public function comments(){
+        return $this->morphMany(Comment::class, 'sender');
+    }
+
     public function setPhoneAttribute($phone){
         $this->attributes['phone'] = normalizePhone($phone);
     }

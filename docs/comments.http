@@ -1,0 +1,36 @@
+### get all comments
+GET {{api}}/shops/1/comments
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### get comment by id
+GET {{api}}/shops/1/comments/1
+Authorization: Bearer {{token}}
+
+### create a comment
+POST {{api}}/shops/1/comments
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "message": "hello world",
+  "score": 5
+}
+
+### update a comment
+PUT {{api}}/shops/1/comments/108
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "message": "nice to meet you",
+  "score": 5
+}
+
+### delete a comment
+DELETE {{api}}/shops/1/comments/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}

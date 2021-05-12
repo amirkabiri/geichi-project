@@ -1,2 +1,3 @@
+### returns latest sent code via SMS
 GET {{api}}/latest-verify-code
 Accept: application/json
