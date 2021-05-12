@@ -1,3 +1,4 @@
+### for authentication you, first you should request the code
 POST {{api}}/users/auth/request
 Accept: application/json
 Content-Type: application/json
@@ -5,11 +6,9 @@ Content-Type: application/json
 {"phone": "09146878528"}
 
 
-###
+### then you should send authentication code to this endpoint to get token
 POST {{api}}/users/auth/verify
 Accept: application/json
 Content-Type: application/json
 
 {"phone": "09146878528", "code":  "6634"}
-
-###
