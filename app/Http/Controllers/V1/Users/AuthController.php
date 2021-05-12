@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1\Users;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\V1\Auth;
 use App\Models\User;
+use App\Rules\IranMobile;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -19,7 +20,7 @@ class AuthController extends Controller
 
     public function request(Request $request){
         $request->validate([
-            'phone' => 'required|iran_mobile'
+            'phone' => ['required', new IranMobile]
         ]);
 
         $this->auth->request($request->phone);
@@ -27,7 +28,7 @@ class AuthController extends Controller
 
     public function verify(Request $request){
         $request->validate([
-            'phone' => 'required|iran_mobile|exists:users,phone',
+            'phone' => ['required', 'exists:users,phone', new IranMobile],
             'code' => 'required'
         ]);
 

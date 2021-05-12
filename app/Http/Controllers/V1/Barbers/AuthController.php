@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1\Barbers;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\V1\Auth;
 use App\Models\Barber;
+use App\Rules\IranMobile;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -19,7 +20,7 @@ class AuthController extends Controller
 
     public function request(Request $request){
         $request->validate([
-            'phone' => 'required|iran_mobile'
+            'phone' => ['required', new IranMobile]
         ]);
 
         $this->auth->request($request->phone);
@@ -27,7 +28,7 @@ class AuthController extends Controller
 
     public function verify(Request $request){
         $request->validate([
-            'phone' => 'required|iran_mobile|exists:barbers,phone',
+            'phone' => ['required', 'exists:barbers,phone', new IranMobile],
             'code' => 'required'
         ]);
 
