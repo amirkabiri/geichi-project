@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Apply;
 use App\Models\Barber;
 use App\Models\Comment;
 use App\Models\Plan;
@@ -19,9 +20,10 @@ class DatabaseSeeder extends Seeder
         Shop::factory(10)->create();
 
         foreach (Shop::all() as $shop){
-            Comment::factory(10)->create([
-                'shop_id' => $shop->id,
-            ]);
+            $shop_id = $shop->id;
+
+            Comment::factory(10)->create(compact('shop_id'));
+            Apply::factory(10)->create(compact('shop_id'));
         }
     }
 }

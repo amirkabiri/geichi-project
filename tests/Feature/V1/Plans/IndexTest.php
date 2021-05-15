@@ -4,6 +4,7 @@ namespace Tests\Feature\V1\Plans;
 
 use App\Http\Resources\PlanResource;
 use App\Models\Plan;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -14,7 +15,7 @@ class IndexTest extends TestCase
     public $route_name_prefix = 'api.v1.plans.index';
 
     public function test_status(){
-        $response = $this->get($this->route());
+        $response = $this->loginAsBarber()->get($this->route());
 
         $response->assertStatus(200);
     }
@@ -23,7 +24,7 @@ class IndexTest extends TestCase
         $plans = Plan::paginate();
         $resource = PlanResource::collection($plans);
 
-        $response = $this->get($this->route());
+        $response = $this->loginAsUser()->get($this->route());
         $response->assertJson([
             'data' => $resource->resolve()
         ]);
@@ -35,7 +36,7 @@ class IndexTest extends TestCase
         $plans = Plan::paginate();
         $resource = PlanResource::collection($plans);
 
-        $response = $this->get($this->route());
+        $response = $this->loginAsUser()->get($this->route());
         $response->assertJson([
             'data' => $resource->resolve()
         ]);

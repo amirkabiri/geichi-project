@@ -15,6 +15,14 @@ class Shop extends Model
         return $this->belongsTo(Barber::class, 'owner_id', 'id');
     }
 
+    public function applies(){
+        return $this->hasMany(Apply::class, 'shop_id', 'id');
+    }
+
+    public function barbers(){
+        return $this->hasMany(Barber::class, 'shop_id', 'id');
+    }
+
     public function comments(){
         return $this->hasMany(Comment::class);
     }

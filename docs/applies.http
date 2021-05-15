@@ -1,0 +1,14 @@
+### show all applies [just for owner of barber shop]
+GET {{api}}/shops/1/applies
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### show apply by id [for owner and the barber who has been applied]
+GET {{api}}/shops/1/applies/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### apply for a barber shop as barber
+POST {{api}}/shops/1/applies
+Accept: application/json
+Authorization: Bearer {{token}}

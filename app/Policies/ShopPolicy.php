@@ -51,4 +51,12 @@ class ShopPolicy
     {
         //
     }
+
+    public function applyBarber($entity, Shop $shop){
+        return ($entity instanceof Barber) && ($entity->ownings()->count() === 0) && is_null($entity->shop_id);
+    }
+
+    public function fireBarber($entity, Shop $shop){
+        return ($entity instanceof Barber) && ($shop->owner->id === $entity->id);
+    }
 }

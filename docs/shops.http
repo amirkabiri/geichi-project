@@ -36,3 +36,15 @@ Authorization: Bearer {{token}}
 DELETE {{api}}/shops/1
 Accept: application/json
 Authorization: Bearer {{token}}
+
+### create shop
+POST {{api}}/shops
+Accept: application/json
+Content-Type: application/json
+
+{
+    "plan_id": 1,
+    "lat": 29.5,
+    "lng": 20.4,
+    "prepayment_amount": 1000
+}

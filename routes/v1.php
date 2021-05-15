@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\V1\ApplyController;
 use App\Http\Controllers\V1\BarberShopController;
 use App\Http\Controllers\V1\CommentController;
 use App\Http\Controllers\V1\PlanController;
@@ -8,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\V1\Users\AuthController as UsersAuthController;
 use App\Http\Controllers\V1\Barbers\AuthController as BarbersAuthController;
+use App\Http\Controllers\V1\BarberController;
 
 if(! function_exists('AuthRoutes')){
     function AuthRoutes($controller){
@@ -29,7 +31,13 @@ Route::prefix('barbers')->name('barbers.')->group(function(){
 Route::middleware('auth:barber,user')->group(function(){
     Route::apiResource('plans', PlanController::class)->only(['index', 'show']);
     Route::apiResource('shops', BarberShopController::class);
+    Route::apiResource('shops.barbers', BarberController::class)->only(['index', 'show']);
     Route::apiResource('shops.comments', CommentController::class);
+    Route::apiResource('shops.applies', ApplyController::class);
+    Route::prefix('/shops/{shop}/barbers')->group(function(){
+        Route::post('/apply', [BarberController::class, 'apply']);
+        Route::delete('/fire/{barber}', [BarberController::class, 'fire']);
+    });
 });
 
 Route::get("latest-verify-code", function(){
