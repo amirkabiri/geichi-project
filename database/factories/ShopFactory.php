@@ -19,8 +19,8 @@ class ShopFactory extends Factory
         return [
             'plan_id' => $plan->id,
             'owner_id' => $owner->id,
-            'lat' => $this->faker->numberBetween(-90, 90),
-            'lng' => $this->faker->numberBetween(-90, 90),
+            'lat' => (string) $this->faker->numberBetween(-90, 90),
+            'lng' => (string) $this->faker->numberBetween(-90, 90),
             'expire_at' => Carbon::now()->addDays($this->faker->numberBetween(0, 90)),
         ];
     }

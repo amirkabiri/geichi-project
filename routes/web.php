@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function (Request $request) {
+    return dd(auth()->id());
     $shop = \App\Models\Shop::with('owner')->find(1);
     $owner = $shop->owner;
     $owner = User::find(1);

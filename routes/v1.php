@@ -26,9 +26,11 @@ Route::prefix('barbers')->name('barbers.')->group(function(){
     AuthRoutes(BarbersAuthController::class);
 });
 
-Route::apiResource('plans', PlanController::class)->only(['index', 'show']);
-Route::apiResource('shops', BarberShopController::class)->only(['index', 'show']);
-Route::apiResource('shops.comments', CommentController::class);
+Route::middleware('auth:barber,user')->group(function(){
+    Route::apiResource('plans', PlanController::class)->only(['index', 'show']);
+    Route::apiResource('shops', BarberShopController::class);
+    Route::apiResource('shops.comments', CommentController::class);
+});
 
 Route::get("latest-verify-code", function(){
     $latest_barber = Barber::latest('updated_at')->first();

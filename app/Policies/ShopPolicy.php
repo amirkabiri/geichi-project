@@ -10,8 +10,6 @@ class ShopPolicy
 {
     use HandlesAuthorization;
 
-    private $barber;
-
     // Determine whether the user can view any models.
     public function viewAny($entity)
     {

@@ -5,6 +5,7 @@ Authorization: Bearer {{token}}
 
 ### get comment by id
 GET {{api}}/shops/1/comments/1
+Accept: application/json
 Authorization: Bearer {{token}}
 
 ### create a comment

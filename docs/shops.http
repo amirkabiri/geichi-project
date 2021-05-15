@@ -7,6 +7,7 @@
 GET {{api}}/shops
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "limit":  1,
@@ -17,3 +18,21 @@ Content-Type: application/json
 
 ### get shop by id
 GET {{api}}/shops/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### update shop by id
+PATCH {{api}}/shops/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "prepayment_amount": "2000",
+    "lat": "-23.2314"
+}
+
+### delete shop by id
+DELETE {{api}}/shops/1
+Accept: application/json
+Authorization: Bearer {{token}}
