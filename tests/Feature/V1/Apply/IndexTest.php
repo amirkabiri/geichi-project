@@ -21,8 +21,6 @@ class IndexTest extends TestCase
     {
         $barber = Barber::factory()->create();
         $shop = Shop::factory()->create(['owner_id' => $barber->id]);
-
-        dd($shop->owner->id === $barber->id);
         $route = $this->route('index', ['shop' => $shop->id]);
 
         $response = $this->withAcceptJSONHeader()->actingAs($barber, 'barber')->get($route);
@@ -48,8 +46,6 @@ class IndexTest extends TestCase
         $shop = Shop::factory()->create(['owner_id' => $barber->id]);
 
         $response = $this->actingAs($barber, 'barber')->get($this->route('index', ['shop' => $shop->id]));
-
-        dd($response->json());
 
         $response->assertJsonStructure();
     }

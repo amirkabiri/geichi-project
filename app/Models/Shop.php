@@ -9,6 +9,10 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'owner_id' => 'integer',
+        'plan_id' => 'integer'
+    ];
     protected $fillable = ['plan_id', 'owner_id', 'lat', 'lng', 'prepayment_amount', 'expire_at'];
 
     public function owner(){
