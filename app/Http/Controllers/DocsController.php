@@ -16,7 +16,7 @@ class DocsController extends Controller
         if(is_file($path)) return $output;
 
         foreach (scandir($path) as $item){
-            if($item[0] === '.') continue;
+            if($item[0] === '.' || substr($item, -5) === '.json') continue;
 
             $item_path = $path . '/' . $item;
 
