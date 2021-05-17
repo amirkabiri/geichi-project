@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BarberShopController extends Controller
+class ShopController extends Controller
 {
     public function index(Request $request){
         $this->authorize('viewAny', Shop::class);

@@ -15,6 +15,10 @@ class Shop extends Model
     ];
     protected $fillable = ['plan_id', 'owner_id', 'lat', 'lng', 'prepayment_amount', 'expire_at'];
 
+    public function services(){
+        return $this->hasMany(Service::class);
+    }
+
     public function owner(){
         return $this->belongsTo(Barber::class, 'owner_id', 'id');
     }

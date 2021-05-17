@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\V1\ApplyController;
-use App\Http\Controllers\V1\BarberShopController;
+use App\Http\Controllers\V1\ShopController;
 use App\Http\Controllers\V1\CommentController;
 use App\Http\Controllers\V1\PlanController;
+use App\Http\Controllers\V1\ShopServiceController;
 use App\Models\Barber;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -30,10 +31,11 @@ Route::prefix('barbers')->name('barbers.')->group(function(){
 
 Route::middleware('auth:barber,user')->group(function(){
     Route::apiResource('plans', PlanController::class)->only(['index', 'show']);
-    Route::apiResource('shops', BarberShopController::class);
+    Route::apiResource('shops', ShopController::class);
     Route::apiResource('shops.barbers', BarberController::class)->only(['index', 'show']);
     Route::apiResource('shops.comments', CommentController::class);
     Route::apiResource('shops.applies', ApplyController::class);
+    Route::apiResource('shops.services', ShopServiceController::class);
     Route::prefix('/shops/{shop}')->group(function(){
         Route::post('/applies/{apply}/{status}', [ApplyController::class, 'status'])->where('status', 'accept|deny');
         Route::prefix('/barbers')->group(function(){
