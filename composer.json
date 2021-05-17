@@ -20,12 +20,13 @@
         "wulfheart/pretty_routes": "^0.3.0"
     },
     "require-dev": {
+        "ext-json": "*",
         "facade/ignition": "^2.5",
         "laravel/sail": "^1.0.1",
+        "laravel/telescope": "^4.4",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3",
-        "ext-json": "*"
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "files": [
@@ -56,7 +57,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {
