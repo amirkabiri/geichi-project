@@ -1,0 +1,46 @@
+### show all services of a shop
+GET {{api}}/shops/1/services
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### show a service by id
+GET {{api}}/shops/1/services/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### create a service [just owner]
+POST {{api}}/shops/1/services
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "hair cut",
+    "time": 20,
+    "price": "30000"
+}
+
+### update a service by id [just owner]
+PATCH {{api}}/shops/1/services/112
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "pashm cut"
+}
+
+### delete a service by id [just owner]
+DELETE {{api}}/shops/1/services/112
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### this endpiont makes barber able to select services which he can do [just barbers who work in this shop]
+POST {{api}}/shops/1/services/1/attach
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### this endpiont makes barber able to deselect services [just barbers who work in this shop]
+POST {{api}}/shops/1/services/1/detach
+Accept: application/json
+Authorization: Bearer {{token}}

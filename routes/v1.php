@@ -37,6 +37,7 @@ Route::middleware('auth:barber,user')->group(function(){
     Route::apiResource('shops.applies', ApplyController::class);
     Route::apiResource('shops.services', ShopServiceController::class);
     Route::prefix('/shops/{shop}')->group(function(){
+        Route::post('/services/{service}/{action}', [ShopServiceController::class, 'serve'])->where('action', 'attach|detach');
         Route::post('/applies/{apply}/{status}', [ApplyController::class, 'status'])->where('status', 'accept|deny');
         Route::prefix('/barbers')->group(function(){
             Route::post('/apply', [BarberController::class, 'apply']);
@@ -46,6 +47,8 @@ Route::middleware('auth:barber,user')->group(function(){
 });
 
 Route::get("latest-verify-code", function(){
+    if(env('APP_ENV') === 'production') abort(404);
+
     $latest_barber = Barber::latest('updated_at')->first();
     $latest_user = User::latest('updated_at')->first();
     $objects = array_filter([$latest_user, $latest_barber], function($obj){

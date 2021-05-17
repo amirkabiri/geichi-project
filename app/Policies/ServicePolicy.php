@@ -4,90 +4,44 @@ namespace App\Policies;
 
 use App\Models\Barber;
 use App\Models\Service;
+use App\Models\Shop;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ServicePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\Barber  $barber
-     * @return mixed
-     */
-    public function viewAny(Barber $barber)
+    public function viewAny($entity, Shop $shop)
+    {
+        return true;
+    }
+
+    public function view($entity, Service $service, Shop $shop)
+    {
+        return true;
+    }
+
+    public function create($entity, Shop $shop)
+    {
+        return ($entity instanceof Barber) && $entity->isOwnerOfShop($shop);
+    }
+
+    public function update($entity, Service $service, Shop $shop)
+    {
+        return ($entity instanceof Barber) && $entity->isOwnerOfShop($shop);
+    }
+
+    public function delete($entity, Service $service, Shop $shop)
+    {
+        return ($entity instanceof Barber) && $entity->isOwnerOfShop($shop);
+    }
+
+    public function restore($entity, Service $service, Shop $shop)
     {
         //
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\Barber  $barber
-     * @param  \App\Models\Service  $service
-     * @return mixed
-     */
-    public function view(Barber $barber, Service $service)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\Barber  $barber
-     * @return mixed
-     */
-    public function create(Barber $barber)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\Barber  $barber
-     * @param  \App\Models\Service  $service
-     * @return mixed
-     */
-    public function update(Barber $barber, Service $service)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\Barber  $barber
-     * @param  \App\Models\Service  $service
-     * @return mixed
-     */
-    public function delete(Barber $barber, Service $service)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\Barber  $barber
-     * @param  \App\Models\Service  $service
-     * @return mixed
-     */
-    public function restore(Barber $barber, Service $service)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\Barber  $barber
-     * @param  \App\Models\Service  $service
-     * @return mixed
-     */
-    public function forceDelete(Barber $barber, Service $service)
+    public function forceDelete($entity, Service $service, Shop $shop)
     {
         //
     }
