@@ -8,7 +8,3 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [DocsController::class, 'view']);
-
-Route::get('/test', function(){
-    return Storage::allFiles();
-});
