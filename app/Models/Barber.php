@@ -13,6 +13,14 @@ class Barber extends Authenticatable
     protected $fillable = ['shop_id', 'phone', 'first_name', 'last_name', 'avatar', 'start_time', 'end_time'];
     protected $hidden = ['api_token', 'login_code'];
 
+    public function isEmployed(){
+        return !$this->isUnemployed();
+    }
+
+    public function isUnemployed(){
+        return is_null($this->shop_id) && is_null(Shop::where('owner_id', $this->id)->first());
+    }
+
     public function isOwnerOfShop(Shop $shop){
         return $this->id === $shop->owner_id;
     }

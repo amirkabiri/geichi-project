@@ -14,24 +14,25 @@ class ApplyController extends Controller
     {
         $this->authorize('viewAny', [Apply::class, $shop]);
 
-        return Apply::paginate();
+        return $shop->applies()->paginate();
     }
 
     public function store(Shop $shop, Request $request)
     {
         $this->authorize('create', [Apply::class, $shop]);
 
-        $apply = Apply::create([
+        $apply = $shop->applies()->save(new Apply([
             'barber_id' => auth()->id(),
-            'shop_id' => $shop->id,
             'description' => $request->description,
-        ]);
+        ]));
 
         return new ApplyResource($apply);
     }
 
     public function show(Shop $shop, Apply $apply)
     {
+        if($shop->id !== $apply->shop_id) abort(404);
+
         $this->authorize('view', [$apply, $shop]);
 
         return new ApplyResource($apply);
@@ -39,13 +40,42 @@ class ApplyController extends Controller
 
     public function update(Shop $shop, Apply $apply, Request $request)
     {
+        if($shop->id !== $apply->shop_id) abort(404);
+
         $this->authorize('update', [$apply, $shop]);
 
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        $apply->update($request->only('description'));
+
+        return new ApplyResource($apply);
+    }
+
+    public function status(Shop $shop, Apply $apply, $status){
+        if($shop->id !== $apply->shop_id) abort(404);
+        if($apply->status !== 'pending') abort(404);
+
+        $this->authorize('changeStatus', [$apply, $shop]);
+
+        if($apply->barber->isEmployed()){
+            $apply->status = 'denied';
+            $apply->save();
+            abort(404);
+        }
+
+        $apply->status = ['accept' => 'accepted', 'deny' => 'denied'][$status];
+        $apply->save();
+        return new ApplyResource($apply);
     }
 
     public function destroy(Shop $shop, Apply $apply)
     {
+        if($shop->id !== $apply->shop_id) abort(404);
+
         $this->authorize('delete', [$apply, $shop]);
 
+        $apply->delete();
     }
 }

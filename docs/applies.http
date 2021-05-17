@@ -1,14 +1,36 @@
 ### show all applies [just for owner of barber shop]
-GET {{api}}/shops/1/applies
+GET {{api}}/shops/212/applies
 Accept: application/json
 Authorization: Bearer {{token}}
 
 ### show apply by id [for owner and the barber who has been applied]
-GET {{api}}/shops/1/applies/1
+GET {{api}}/shops/212/applies/104
 Accept: application/json
 Authorization: Bearer {{token}}
 
-### apply for a barber shop as barber
-POST {{api}}/shops/1/applies
+### apply for a barber shop as barber [just unemployed barbers]
+POST {{api}}/shops/212/applies
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### delete an apply request by id [just barber who had applied]
+DELETE {{api}}/shops/212/applies/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### update an apply requst [just barber who had applied]
+PATCH {{api}}/shops/212/applies/104
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### accept an apply [just owner]
+### after accepting or denying and apply, it will remove.
+### if applied barber accepted in another shop, apply request for other shops will remove automatically
+POST {{api}}/shops/212/applies/104/accept
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### deny an apply [just owner]
+POST {{api}}/shops/212/applies/104/deny
 Accept: application/json
 Authorization: Bearer {{token}}

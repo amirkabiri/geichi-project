@@ -41,6 +41,7 @@ Authorization: Bearer {{token}}
 POST {{api}}/shops
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "plan_id": 1,

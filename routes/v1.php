@@ -34,9 +34,12 @@ Route::middleware('auth:barber,user')->group(function(){
     Route::apiResource('shops.barbers', BarberController::class)->only(['index', 'show']);
     Route::apiResource('shops.comments', CommentController::class);
     Route::apiResource('shops.applies', ApplyController::class);
-    Route::prefix('/shops/{shop}/barbers')->group(function(){
-        Route::post('/apply', [BarberController::class, 'apply']);
-        Route::delete('/fire/{barber}', [BarberController::class, 'fire']);
+    Route::prefix('/shops/{shop}')->group(function(){
+        Route::post('/applies/{apply}/{status}', [ApplyController::class, 'status'])->where('status', 'accept|deny');
+        Route::prefix('/barbers')->group(function(){
+            Route::post('/apply', [BarberController::class, 'apply']);
+            Route::delete('/fire/{barber}', [BarberController::class, 'fire']);
+        });
     });
 });
 

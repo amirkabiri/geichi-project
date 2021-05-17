@@ -25,7 +25,7 @@ class ApplyPolicy
 
     public function create($entity, Shop $shop)
     {
-        return $entity instanceof Barber;
+        return ($entity instanceof Barber) && $entity->isUnemployed();
     }
 
     public function update($entity, Apply $apply, Shop $shop)
@@ -36,6 +36,10 @@ class ApplyPolicy
     public function delete($entity, Apply $apply, Shop $shop)
     {
         return ($entity instanceof Barber) && ($entity->id === $apply->barber->id);
+    }
+
+    public function changeStatus($entity, Apply $apply, Shop $shop){
+        return ($entity instanceof Barber) && $entity->isOwnerOfShop($shop);
     }
 
     public function restore($entity, Apply $apply, Shop $shop)
