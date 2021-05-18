@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\V1\ApplyController;
+use App\Http\Controllers\V1\BarberServiceController;
 use App\Http\Controllers\V1\ShopController;
 use App\Http\Controllers\V1\CommentController;
 use App\Http\Controllers\V1\PlanController;
@@ -33,6 +34,7 @@ Route::middleware('auth:barber,user')->group(function(){
     Route::apiResource('plans', PlanController::class)->only(['index', 'show']);
     Route::apiResource('shops', ShopController::class);
     Route::apiResource('shops.barbers', BarberController::class)->only(['index', 'show']);
+    Route::apiResource('shops.barbers.services', BarberServiceController::class)->only(['index', 'show']);
     Route::apiResource('shops.comments', CommentController::class);
     Route::apiResource('shops.applies', ApplyController::class);
     Route::apiResource('shops.services', ShopServiceController::class);

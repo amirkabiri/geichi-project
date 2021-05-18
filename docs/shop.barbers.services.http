@@ -1,0 +1,9 @@
+### show all services of a shop
+GET {{api}}/shops/1/barbers/1/services
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### show a service by id
+GET {{api}}/shops/1/barbers/1/services/11
+Accept: application/json
+Authorization: Bearer {{token}}

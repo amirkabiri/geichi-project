@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $barber = Barber::factory()->create(['phone' => '09146878528']);
-        Shop::factory()->create(['owner_id' => $barber->id]);
+        $shop = Shop::factory()->create(['owner_id' => $barber->id]);
+        $barber->update(['shop_id' => $shop->id]);
 
         User::factory(10)->create();
         Barber::factory(10)->create();
