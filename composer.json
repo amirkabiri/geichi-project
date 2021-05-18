@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "ext-json": "*",
+        "brianium/paratest": "^6.3",
         "facade/ignition": "^2.5",
         "laravel/sail": "^1.0.1",
         "laravel/telescope": "^4.4",
