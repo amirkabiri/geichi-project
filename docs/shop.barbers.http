@@ -1,0 +1,19 @@
+### get all barbers of the shop
+GET {{api}}/shops/1/barbers
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### get barber of the shop by id
+GET {{api}}/shops/1/barbers/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### fire barber of the shop by id [just owner]
+DELETE {{api}}/shops/1/barbers/1/fire
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### plan of barber
+POST {{api}}/shops/1/barbers/apply
+Accept: application/json
+Authorization: Bearer {{token}}

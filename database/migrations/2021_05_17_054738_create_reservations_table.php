@@ -11,9 +11,10 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('barber_service_id')->constrained('barber_services');
-            $table->timestamp('started_at');
-            $table->integer('time');
+            $table->foreignId('barber_service_id')->constrained('barber_service');
+            $table->timestamp('end_at')->useCurrent();
+            $table->timestamp('start_at')->useCurrent();
+            $table->integer('duration');
             $table->timestamps();
         });
     }

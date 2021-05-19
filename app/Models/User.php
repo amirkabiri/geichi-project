@@ -14,6 +14,10 @@ class User extends Authenticatable
     protected $fillable = ['first_name', 'last_name', 'phone'];
     protected $hidden = ['api_token', 'login_code'];
 
+    public function reservations(){
+        return $this->hasMany(Reservation::class, 'user_id', 'id');
+    }
+
     public function comments(){
         return $this->morphMany(Comment::class, 'sender');
     }

@@ -25,8 +25,15 @@ class Barber extends Authenticatable
         return $this->id === $shop->owner_id;
     }
 
+    public function barberServices(){
+        return $this->hasMany(BarberService::class);
+    }
+
     public function services(){
-        return $this->belongsToMany(Service::class)->withTimestamps();
+        return $this->belongsToMany(Service::class)
+            ->withTimestamps()
+            ->withPivot('id')
+            ->using(BarberService::class);
     }
 
     public function applies(){
