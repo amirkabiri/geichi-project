@@ -76,7 +76,8 @@ class ShopServiceController extends Controller
         // this authorization has a problem which owner could not select any service to serve.
         // FIXME set shop_id even for owner of shop
         // to this problem been solved
-        $this->authorize('serveService', [$service, $shop]);
+        // TODO should this policy be in ShopPolicy or ServicePolicy?
+        $this->authorize('serveService', $shop);
 
         $user = auth()->user();
         $services = $user->services();

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\V1\Users\AuthController as UsersAuthController;
 use App\Http\Controllers\V1\Barbers\AuthController as BarbersAuthController;
 use App\Http\Controllers\V1\BarberController;
+use App\Http\Controllers\V1\LatestVerifyCodeController;
 
 if(! function_exists('AuthRoutes')){
     function AuthRoutes($controller){
@@ -49,25 +50,5 @@ Route::middleware('auth:barber,user')->group(function(){
     });
 });
 
-Route::get("latest-verify-code", function(){
-    if(env('APP_ENV') === 'production') abort(404);
-
-    $latest_barber = Barber::latest('updated_at')->first();
-    $latest_user = User::latest('updated_at')->first();
-    $objects = array_filter([$latest_user, $latest_barber], function($obj){
-        return !is_null($obj);
-    });
-    usort($objects, function($a, $b){
-        return $b->updated_at->timestamp - $a->updated_at->timestamp;
-    });
-    return $objects[0]->login_code;
-});
-
-
-
-
-
-
-
-
+Route::get("latest-verify-code", [LatestVerifyCodeController::class, 'index'])->name('latest-verify-code');
 

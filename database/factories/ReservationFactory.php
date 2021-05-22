@@ -26,7 +26,7 @@ class ReservationFactory extends Factory
             'barber_service_id' => $barberService->id,
             'start_at' => $start_at,
             'duration' => $duration,
-            'end_at' => $start_at->addMinutes($duration)
+            'end_at' => $start_at->copy()->addMinutes($duration)
         ];
     }
 }

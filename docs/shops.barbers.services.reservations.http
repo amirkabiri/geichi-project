@@ -1,0 +1,14 @@
+### show all reservations of this service of this baber
+GET {{api}}/shops/1/barbers/1/services/1/reservations
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### create new reservation
+POST {{api}}/shops/1/barbers/1/services/1/reservations
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "start_at": "1400-03-10 15:30:30"
+}

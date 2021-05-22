@@ -43,9 +43,27 @@ class ReservationController extends Controller
         return new ReservationResource($reservation);
     }
 
-    public function store(Shop $shop, Barber $barber, Service $service){
+    public function store(Shop $shop, Barber $barber, Service $service, Request $request){
         $this->acceptOrFail($shop, $barber, $service);
 
+        $request->validate([
+            'user_id' => '',
+            'barber_service_id' => '',
+            'start_at' => 'required|date',
+        ]);
+
+        return strToCarbon($request->start_at);
+
         $barberService = $this->getBarberService($barber, $service);
+
+        $reservation = Reservation::create([
+            'user_id' => '',
+            'barber_service_id' => '',
+            'start_at' => '',
+            'end_at' => '',
+            'duration' => '',
+        ]);
+
+        return new ReservationResource($reservation);
     }
 }

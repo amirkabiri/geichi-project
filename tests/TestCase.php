@@ -12,6 +12,12 @@ abstract class TestCase extends BaseTestCase
 
     protected $actingAsEntity;
 
+    public function assumeProductionEnvironment(){
+        app()->detectEnvironment(function(){
+            return 'production';
+        });
+    }
+
     public function withAcceptJSONHeader(): TestCase
     {
         return $this->withHeader('Accept', 'application/json');

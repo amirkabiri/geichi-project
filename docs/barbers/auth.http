@@ -11,4 +11,4 @@ POST {{api}}/barbers/auth/verify
 Accept: application/json
 Content-Type: application/json
 
-{"phone": "09146878528", "code":  "4253"}
+{"phone": "09146878528", "code":  "7054"}

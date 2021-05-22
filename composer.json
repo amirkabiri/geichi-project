@@ -16,6 +16,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
+        "morilog/jalali": "^3.2",
         "shetabit/payment": "^4.0",
         "wulfheart/pretty_routes": "^0.3.0"
     },
