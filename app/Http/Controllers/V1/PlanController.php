@@ -10,19 +10,15 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlanController extends Controller
 {
-    public function __construct()
+    public function index()
     {
-//        $this->authorizeResource(Plan::class, 'plan');
-    }
-
-    public function index(): AnonymousResourceCollection
-    {
-        return PlanResource::collection(Plan::paginate());
+        return paginate(new Plan);
     }
 
     public function store(PlanRequest $request): PlanResource
     {
         $plan = Plan::create($request->validated());
+
         return new PlanResource($plan);
     }
 
@@ -34,12 +30,14 @@ class PlanController extends Controller
     public function update(PlanRequest $request, Plan $plan): PlanResource
     {
         $plan->update($request->validated());
+
         return new PlanResource($plan);
     }
 
     public function destroy(Plan $plan): PlanResource
     {
         $plan->delete();
+
         return new PlanResource($plan);
     }
 }

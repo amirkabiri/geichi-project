@@ -19,7 +19,7 @@ class CommentController extends Controller
     public function index(Shop $shop){
         $this->authorize('viewAny', Comment::class);
 
-        return $shop->comments()->paginate();
+        return paginate($shop->comments());
     }
 
     public function show(Shop $shop, Comment $comment){

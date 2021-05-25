@@ -39,9 +39,9 @@ class ReservationController extends Controller
         $this->authorize('viewAny', Reservation::class);
 
         $barberService = $this->getBarberService($barber, $service);
-        $reservations = Reservation::where('barber_service_id', $barberService->id)->paginate();
+        $reservations = Reservation::where('barber_service_id', $barberService->id);
 
-        return $reservations;
+        return paginate($reservations);
     }
 
     public function show(Shop $shop, Barber $barber, Service $service, Reservation $reservation){

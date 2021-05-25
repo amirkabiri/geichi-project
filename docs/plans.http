@@ -1,6 +1,9 @@
 ### get all plans
 GET {{api}}/plans
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### get plan by id
 GET {{api}}/plans/1
+Accept: application/json
+Authorization: Bearer {{token}}

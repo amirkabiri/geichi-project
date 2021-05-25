@@ -14,7 +14,7 @@ class ApplyController extends Controller
     {
         $this->authorize('viewAny', [Apply::class, $shop]);
 
-        return $shop->applies()->paginate();
+        return paginate($shop->applies());
     }
 
     public function store(Shop $shop, Request $request)
