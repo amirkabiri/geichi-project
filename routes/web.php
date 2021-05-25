@@ -62,3 +62,9 @@ Route::get('/test-time', function(){
     return (new Carbon('2021-05-23 13:15:00'))->toDateTimeString();
 //    return Carbon::tomorrow()->addHours(13)->addMinutes(15)->toDateTimeString();
 });
+
+
+Route::get('/test-page', function(){
+//    return User::customPaginate();
+    return paginate(User::find(11));
+});
