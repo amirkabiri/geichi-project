@@ -82,3 +82,31 @@ for authorization as a user you can set this header:
     Auth-Guard: user
 
 Notice: this header does not guarantee to authorize as a same user or barber every time.
+
+
+# Status codes
+200 -> job done successfully, body contains data
+201 -> some resource created successfully, body contains created resource
+401 -> unauthenticated, empty body.
+403 -> authenticated use don't have permission for this action, empty body.
+422 -> validation error, body contains validation errors info
+500 -> server has fucked up, I am logging errors and I will fix it. don't worry.
+
+# Validation errors
+if you got 422 status code when creating or updating something, that means you have sent invalid data.
+the output will look like this:
+{
+    "message": "The given data was invalid.",
+    "errors": {
+        "plan_id": [
+            "The plan id field is required."
+        ],
+        "lat": [
+            "The lat field is required."
+        ],
+        "lng": [
+            "The lng field is required."
+        ]
+    }
+}
+you can set a middleware for your request handler and check whenever you got 422 error, show "errors" key as toast messages. 
