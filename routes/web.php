@@ -45,6 +45,12 @@ Route::get('/reserve-test', function (){
 });
 
 Route::get('/test-time', function(){
+    $timestamp = (string) Carbon::tomorrow()->addHours(15)->timestamp;
+    $carbon = Carbon::createFromTimestamp($timestamp);
+
+    return jdate($timestamp);
+    return Jalalian::fromCarbon($carbon);
+
     $validation = Validator::make(request()->all(), [
         'date' => 'required|date'
     ]);

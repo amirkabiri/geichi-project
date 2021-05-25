@@ -3,12 +3,24 @@ GET {{api}}/shops/1/barbers/1/services/1/reservations
 Accept: application/json
 Authorization: Bearer {{token}}
 
-### create new reservation
+### get a reservation by id
+GET {{api}}/shops/1/barbers/1/services/1/reservations/1
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### create new reservation [only users]
 POST {{api}}/shops/1/barbers/1/services/1/reservations
 Accept: application/json
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "start_at": "1400-03-10 15:30:30"
+    "start_at": "1621938600"
 }
+
+### delete a reservation by id
+DELETE {{api}}/shops/1/barbers/1/services/1/reservations/1
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json

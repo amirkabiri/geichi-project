@@ -9,6 +9,11 @@ use App\Models\BarberService;
 use App\Models\Reservation;
 use App\Models\Service;
 use App\Models\Shop;
+use App\Rules\BarberServiceTimeIsFree;
+use App\Rules\FutureTimestamp;
+use App\Rules\Timestamp;
+use App\Rules\TimestampGreaterThan;
+use App\Rules\TimestampLessThan;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -31,6 +36,8 @@ class ReservationController extends Controller
     public function index(Shop $shop, Barber $barber, Service $service){
         $this->acceptOrFail($shop, $barber, $service);
 
+        $this->authorize('viewAny', Reservation::class);
+
         $barberService = $this->getBarberService($barber, $service);
         $reservations = Reservation::where('barber_service_id', $barberService->id)->paginate();
 
@@ -40,30 +47,48 @@ class ReservationController extends Controller
     public function show(Shop $shop, Barber $barber, Service $service, Reservation $reservation){
         $this->acceptOrFail($shop, $barber, $service, $reservation);
 
+        $this->authorize('view', $reservation);
+
         return new ReservationResource($reservation);
     }
 
     public function store(Shop $shop, Barber $barber, Service $service, Request $request){
         $this->acceptOrFail($shop, $barber, $service);
 
-        $request->validate([
-            'user_id' => '',
-            'barber_service_id' => '',
-            'start_at' => 'required|date',
-        ]);
-
-        return strToCarbon($request->start_at);
+        $this->authorize('create', Reservation::class);
 
         $barberService = $this->getBarberService($barber, $service);
+        $request->validate([
+            'start_at' => [
+                'required', new Timestamp, new TimestampGreaterThan(now()),
+                new TimestampLessThan(now()->addDays(7)),
+                new BarberServiceTimeIsFree($barberService)
+            ],
+        ]);
 
+        $start_at = toCarbon($request->start_at);
         $reservation = Reservation::create([
-            'user_id' => '',
-            'barber_service_id' => '',
-            'start_at' => '',
-            'end_at' => '',
-            'duration' => '',
+            'user_id' => auth()->id(),
+            'barber_service_id' => $barberService->id,
+            'start_at' => $start_at,
+            'end_at' => $start_at->copy()->addMinutes($service->time),
+            'duration' => $service->time,
         ]);
 
         return new ReservationResource($reservation);
+    }
+
+    public function update(Shop $shop, Barber $barber, Service $service, Reservation $reservation){
+        $this->acceptOrFail($shop, $barber, $service, $reservation);
+
+        $this->authorize('update', Reservation::class);
+    }
+
+    public function destroy(Shop $shop, Barber $barber, Service $service, Reservation $reservation){
+        $this->acceptOrFail($shop, $barber, $service, $reservation);
+
+        $this->authorize('delete', $reservation);
+
+        $reservation->delete();
     }
 }
