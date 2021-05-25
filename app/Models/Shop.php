@@ -11,7 +11,10 @@ class Shop extends Model
 
     protected $casts = [
         'owner_id' => 'integer',
-        'plan_id' => 'integer'
+        'plan_id' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+        'expire_at' => 'timestamp'
     ];
     protected $fillable = ['plan_id', 'owner_id', 'lat', 'lng', 'prepayment_amount', 'expire_at'];
 

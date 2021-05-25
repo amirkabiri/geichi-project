@@ -13,6 +13,12 @@ class BarberService extends Pivot
     use HasFactory;
 
     protected $fillable = ['barber_id', 'service_id'];
+    protected $casts = [
+        'barber_id' => 'integer',
+        'service_id' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
     public $incrementing = true;
 
     public function isTimeFree(Carbon $start_at, $durationOrEndAt) {

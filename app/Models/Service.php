@@ -10,6 +10,12 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = ['shop_id', 'title', 'price', 'time'];
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+        'shop_id' => 'integer',
+        'time' => 'integer',
+    ];
 
     public function barbers(){
         return $this->belongsToMany(Barber::class)

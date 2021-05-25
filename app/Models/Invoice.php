@@ -10,6 +10,10 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = ['amount', 'status'];
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
 
     public function invoicable(){
         return $this->morphTo();

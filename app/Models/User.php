@@ -13,6 +13,10 @@ class User extends Authenticatable
 
     protected $fillable = ['first_name', 'last_name', 'phone'];
     protected $hidden = ['api_token', 'login_code'];
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
 
     public function reservations(){
         return $this->hasMany(Reservation::class, 'user_id', 'id');

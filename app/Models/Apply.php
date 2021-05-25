@@ -9,6 +9,13 @@ class Apply extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'barber_id' => 'integer',
+        'shop_id' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
+
     protected $fillable = ['barber_id', 'shop_id', 'description', 'status'];
 
     public function shop(){

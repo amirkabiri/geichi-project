@@ -12,6 +12,11 @@ class Barber extends Authenticatable
 
     protected $fillable = ['shop_id', 'phone', 'first_name', 'last_name', 'avatar', 'start_time', 'end_time'];
     protected $hidden = ['api_token', 'login_code'];
+    protected $casts = [
+        'shop_id' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
 
     public function isEmployed(){
         return !$this->isUnemployed();

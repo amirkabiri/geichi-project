@@ -14,5 +14,7 @@ class Plan extends Model
         'prepayment' => 'boolean',
         'barbers_count' => 'integer',
         'price' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
     ];
 }
