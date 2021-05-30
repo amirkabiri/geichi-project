@@ -21,6 +21,7 @@ class CreatePlansTable extends Migration
             $table->integer('barbers_count');
             $table->boolean('prepayment');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

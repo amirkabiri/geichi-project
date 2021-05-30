@@ -15,29 +15,29 @@ class PlanController extends Controller
         return paginate(new Plan);
     }
 
-    public function store(PlanRequest $request): PlanResource
-    {
-        $plan = Plan::create($request->validated());
-
-        return new PlanResource($plan);
-    }
+//    public function store(PlanRequest $request): PlanResource
+//    {
+//        $plan = Plan::create($request->validated());
+//
+//        return new PlanResource($plan);
+//    }
 
     public function show(Plan $plan): PlanResource
     {
         return new PlanResource($plan);
     }
 
-    public function update(PlanRequest $request, Plan $plan): PlanResource
-    {
-        $plan->update($request->validated());
-
-        return new PlanResource($plan);
-    }
-
-    public function destroy(Plan $plan): PlanResource
-    {
-        $plan->delete();
-
-        return new PlanResource($plan);
-    }
+//    public function update(PlanRequest $request, Plan $plan): PlanResource
+//    {
+//        $plan->update($request->validated());
+//
+//        return new PlanResource($plan);
+//    }
+//
+//    public function destroy(Plan $plan): PlanResource
+//    {
+//        $plan->delete();
+//
+//        return new PlanResource($plan);
+//    }
 }
