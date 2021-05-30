@@ -7,7 +7,14 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "url": "https://github.com/ali-alharthi/laravel-er-diagram-generator",
+            "type": "github"
+        }
+    ],
     "require": {
+        "beyondcode/laravel-er-diagram-generator": "dev-master",
         "php": "^7.3|^8.0",
         "fakerphp/faker": "^1.9.1",
         "fideloper/proxy": "^4.4",
