@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        $this->call([
+            AdminSeeder::class
+        ]);
+
         $barber = Barber::factory()->create(['phone' => '09146878528']);
         $shop = Shop::factory()->create(['owner_id' => $barber->id]);
         $barber->update(['shop_id' => $shop->id]);

@@ -48,10 +48,10 @@ return [
             'hash' => false
         ],
 
-//        'admin' => [
-//            'driver' => 'session',
-//            'provider' => 'admins'
-//        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins'
+        ],
     ],
 
     /*
@@ -80,7 +80,12 @@ return [
         'barbers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Barber::class,
-        ]
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',

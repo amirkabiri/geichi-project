@@ -18,6 +18,10 @@ class Barber extends Authenticatable
         'updated_at' => 'timestamp',
     ];
 
+    public function getFullNameAttribute(){
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     public function isEmployed(){
         return !$this->isUnemployed();
     }

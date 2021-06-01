@@ -8,4 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     use HasFactory;
+
+    protected $fillable = ['username', 'password'];
+
+    protected $hidden = ['password', 'remember_token'];
+
+    protected $casts = [
+        'logged_in_at' => 'datetime'
+    ];
 }
