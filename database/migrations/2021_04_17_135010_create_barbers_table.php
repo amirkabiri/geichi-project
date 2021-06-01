@@ -10,7 +10,7 @@ class CreateBarbersTable extends Migration
     {
         Schema::create('barbers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shop_id')->nullable()->constrained('shops');
+            $table->foreignId('shop_id')->nullable()->constrained('shops')->onDelete('set null');
             $table->string('phone')->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

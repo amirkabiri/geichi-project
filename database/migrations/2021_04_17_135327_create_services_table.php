@@ -10,11 +10,12 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shop_id')->constrained('shops');
+            $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->string('title');
             $table->string('price');
             $table->integer('time');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

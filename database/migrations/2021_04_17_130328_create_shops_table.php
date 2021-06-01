@@ -10,13 +10,14 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('plan_id')->nullable()->constrained('plans');
+            $table->foreignId('plan_id')->nullable()->constrained('plans')->onDelete('set null');
             $table->bigInteger('owner_id')->unsigned();
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
             $table->string('prepayment_amount')->default('0');
             $table->timestamp('expire_at')->useCurrent();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

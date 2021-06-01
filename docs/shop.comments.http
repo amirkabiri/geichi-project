@@ -1,3 +1,5 @@
+# Notice: sender of a comment might be null which means sender has been deleted
+
 ### get all comments
 GET {{api}}/shops/1/comments
 Accept: application/json

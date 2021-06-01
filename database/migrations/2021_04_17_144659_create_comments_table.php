@@ -10,12 +10,12 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shop_id')->constrained('shops');
-            $table->foreignId('sender_id');
-            $table->string('sender_type');
+            $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
+            $table->foreignId('sender_id')->nullable();
+            $table->string('sender_type')->nullable();
             $table->text('message');
             $table->integer('score');
-            $table->foreignId('parent')->nullable()->constrained('comments');
+            $table->foreignId('parent')->nullable()->constrained('comments')->onDelete('cascade');
             $table->timestamps();
         });
     }

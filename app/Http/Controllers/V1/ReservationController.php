@@ -82,6 +82,8 @@ class ReservationController extends Controller
         $this->acceptOrFail($shop, $barber, $service, $reservation);
 
         $this->authorize('update', Reservation::class);
+
+        // todo implement reservation update
     }
 
     public function destroy(Shop $shop, Barber $barber, Service $service, Reservation $reservation){

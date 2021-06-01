@@ -87,6 +87,8 @@ class ShopController extends Controller
     public function destroy(Shop $shop){
         $this->authorize('delete', $shop);
 
-        $shop->delete();
+        // FIXME if there is any reservation on this shop, don't let to delete it
+
+//        $shop->delete();
     }
 }

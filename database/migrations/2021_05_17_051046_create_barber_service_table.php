@@ -10,9 +10,10 @@ class CreateBarberServiceTable extends Migration
     {
         Schema::create('barber_service', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barber_id')->constrained('barbers');
-            $table->foreignId('service_id')->constrained('services');
+            $table->foreignId('barber_id')->constrained('barbers')->onDelete('cascade');
+            $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

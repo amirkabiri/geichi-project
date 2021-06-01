@@ -6,11 +6,12 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 class BarberService extends Pivot
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = ['barber_id', 'service_id'];
     protected $casts = [

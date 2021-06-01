@@ -9,12 +9,17 @@ class ShopsOwnerRelation extends Migration
     public function up()
     {
         Schema::table('shops', function (Blueprint $table){
-            $table->foreign('owner_id')->references('id')->on('barbers');
+            $table->foreign('owner_id')
+                ->references('id')
+                ->on('barbers')
+                ->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        //
+        Schema::table('shops', function (Blueprint $table){
+            $table->dropForeign(['owner_id']);
+        });
     }
 }

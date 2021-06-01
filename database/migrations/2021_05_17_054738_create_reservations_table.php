@@ -10,7 +10,7 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('barber_service_id')->constrained('barber_service');
             $table->timestamp('end_at')->useCurrent();
             $table->timestamp('start_at')->useCurrent();
