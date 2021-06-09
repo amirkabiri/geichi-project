@@ -9,7 +9,10 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li><a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-            <li><a class="nav-link" href="{{ route('telescope') }}" target="_blank"><i class="fas fa-desktop"></i> <span>Telescope</span></a></li>
+
+            @if(config('telescope.active'))
+                <li><a class="nav-link" href="{{ route('telescope') }}" target="_blank"><i class="fas fa-desktop"></i> <span>Telescope</span></a></li>
+            @endif
 
             <li><a class="nav-link" href="{{ route('admin.admins.index') }}"><i class="fas fa-users"></i> <span>Admins</span></a></li>
 

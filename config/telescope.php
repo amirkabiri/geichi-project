@@ -5,6 +5,8 @@ use Laravel\Telescope\Watchers;
 
 return [
 
+    'active' => env('APP_ENV') === 'local' || env('TELESCOPE_ACTIVE', false),
+
     /*
     |--------------------------------------------------------------------------
     | Telescope Domain
