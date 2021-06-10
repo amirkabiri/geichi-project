@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'normalize.phone' => \App\Http\Middleware\NormalizePhone::class,
         'guest.else' => \App\Http\Middleware\RedirectIfAuthenticatedTo::class,
+        'dark' => \App\Http\Middleware\DarkMode::class,
     ];
 }

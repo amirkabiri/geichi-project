@@ -69,6 +69,9 @@
         </div>
     </form>
     <ul class="navbar-nav navbar-right">
+        <li class="dropdown dropdown-list-toggle">
+            <a data-toggle="tooltip" title="Dark mode : {{ session('dark') ? 'ON' : 'OFF' }}" href="?dark={{ session('dark') ? 'off' : 'on' }}" class="nav-link nav-link-lg"><i class="fa{{ session('dark') ? 's' : 'r' }} fa-moon"></i></a>
+        </li>
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
                 <div class="dropdown-header">Messages

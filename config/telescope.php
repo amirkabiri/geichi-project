@@ -80,6 +80,7 @@ return [
     'middleware' => [
         'web',
         Authorize::class,
+        \App\Http\Middleware\DarkMode::class,
     ],
 
     /*
