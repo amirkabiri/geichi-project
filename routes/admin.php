@@ -8,3 +8,4 @@ Route::get('/logout', 'LogoutController@handle')->name('logout');
 
 Route::resource('/admins', 'AdminsController');
 Route::resource('/shops', 'ShopsController');
+Route::resource('/plans', 'PlansController');

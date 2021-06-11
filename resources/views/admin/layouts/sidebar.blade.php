@@ -16,6 +16,8 @@
 
             <li><a class="nav-link" href="{{ route('admin.admins.index') }}"><i class="fas fa-users"></i> <span>Admins</span></a></li>
 
+            <li><a class="nav-link" href="{{ route('admin.plans.index') }}"><i class="fas fa-clipboard-list"></i> <span>Plans</span></a></li>
+
             <li><a class="nav-link" href="{{ route('admin.shops.index') }}"><i class="fas fa-shopping-bag"></i> <span>Shops</span></a></li>
 
             <li class="nav-item dropdown">
