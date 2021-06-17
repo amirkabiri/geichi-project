@@ -4,7 +4,9 @@ namespace Tests;
 
 use App\Models\Barber;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Pagination\AbstractPaginator;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -37,5 +39,13 @@ abstract class TestCase extends BaseTestCase
         $user = User::factory()->create();
         $this->actingAsEntity = $user;
         return $this->actingAs($user, 'user');
+    }
+
+    public function expectAuthorizationException(){
+        $this->expectException(AuthorizationException::class);
+    }
+
+    public function assertPaginatedResource($resouce){
+        $this->assertInstanceOf(AbstractPaginator::class, $resouce);
     }
 }
